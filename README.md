@@ -113,7 +113,9 @@ python commit_art.py --help
 
 ## Examples (real output)
 
-![Contribution-graph art mockup](https://cdn.jsdelivr.net/gh/ConnorSawaya/commit-art@519a1389ff0470722f53979fc89a231da67a9508/docs/contribution-preview.png)
+![Contribution-graph art mockup](./docs/contribution-preview.png)
+
+[Open the image directly](./docs/contribution-preview.png)
 
 Single line:
 
