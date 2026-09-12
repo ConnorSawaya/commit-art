@@ -5,6 +5,12 @@ correctly back-dated Git commits - entirely on your own machine.
 This tool **never pushes, never touches GitHub, and never changes your
 global Git config**.
 
+## Preview
+
+![Contribution-graph art mockup](./docs/contribution-preview.png)
+
+[Open `docs/contribution-preview.png` directly](https://github.com/ConnorSawaya/commit-art/blob/main/docs/contribution-preview.png?raw=1)
+
 ```
 ┌──────────────────────────┐
 │ CONTRIBUTION ART PREVIEW │
@@ -112,10 +118,6 @@ python commit_art.py --help
 ```
 
 ## Examples (real output)
-
-![Contribution-graph art mockup](./docs/contribution-preview.png)
-
-[Open `docs/contribution-preview.png` directly](https://github.com/ConnorSawaya/commit-art/blob/main/docs/contribution-preview.png?raw=1)
 
 Single line:
 
