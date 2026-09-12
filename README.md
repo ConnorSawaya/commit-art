@@ -231,7 +231,7 @@ commit-art/
 ├── commit_art.py          # CLI: preview / dry-run / local-test / publish
 ├── tui.py                 # full-screen Textual app (optional, --tui)
 ├── contribution_art/
-│   ├── font.py            # 7-row font + 2-row stacked font (easy to extend)
+│   ├── font.py            # 7-row font + 3-row stacked font (easy to extend)
 │   ├── renderer.py        # grids, Unicode + GitHub-calendar rendering
 │   ├── layout.py          # measuring, auto-wrap, single/stacked planning
 │   ├── dates.py           # Sunday-anchored, never-future date math
@@ -252,7 +252,7 @@ commit-art/
 
 - Very long phrases can overflow one screen-year; stacked mode reports
   DOES NOT FIT honestly instead of pretending.
-- Stacked glyphs are blocky (2 rows can't match 7-row detail).
+- Stacked glyphs are blocky (3 rows can't match 7-row detail).
 - Shades depend on the viewer's theme; commit counts only approximate color.
 - `--publish` pushes fabricated history to your own repo — it shows when
   commits claim to be, not real work; don't misrepresent it.
