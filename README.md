@@ -1,15 +1,47 @@
-# Commit Art - Git Contribution-Calendar Artwork (local-only)
+<div align="center">
+  <h1>Commit Art</h1>
+  <p><strong>Turn Git contribution calendars into pixel art you can preview, verify, and publish.</strong></p>
+  <p>
+    <a href="https://github.com/ConnorSawaya/commit-art/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/ConnorSawaya/commit-art/ci.yml?branch=main&label=tests&logo=githubactions&logoColor=white" alt="Tests"></a>
+    <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10 or newer">
+    <img src="https://img.shields.io/badge/core-runtime-stdlib-2ea44f?logo=python&logoColor=white" alt="Core runtime uses the Python standard library">
+    <img src="https://img.shields.io/badge/optional-TUI-7C3AED" alt="Optional Textual terminal UI">
+  </p>
+  <p>
+    <a href="#quick-start">Quick start</a> |
+    <a href="#choose-your-mode">Choose a mode</a> |
+    <a href="#interactive-controls">Controls</a> |
+    <a href="#safety-first">Safety</a>
+  </p>
+</div>
 
-Draw words on a GitHub-style contribution calendar by generating
-correctly back-dated Git commits - entirely on your own machine.
-This tool **never pushes, never touches GitHub, and never changes your
-global Git config**.
+> [!NOTE]
+> Preview, dry-run, local-test, and interactive modes stay local. `--publish` is the only command that calls GitHub or pushes.
+
+> [!WARNING]
+> Generated history is back-dated art, not proof of work. Use it honestly.
 
 ## Preview
 
-![Contribution-graph art mockup](./docs/contribution-preview.png)
+<p align="center">
+  <a href="https://github.com/ConnorSawaya/commit-art/blob/main/docs/contribution-preview.png?raw=1">
+    <img src="./docs/contribution-preview.png" alt="Contribution graph art mockup" width="854">
+  </a>
+</p>
 
-[Open `docs/contribution-preview.png` directly](https://github.com/ConnorSawaya/commit-art/blob/main/docs/contribution-preview.png?raw=1)
+<p align="center"><sub>Click the preview to open the full-size PNG.</sub></p>
+
+## Quick Start
+
+```bash
+python commit_art.py "HELLO" --preview --view github
+python commit_art.py "HELLO" --local-test
+```
+
+`--preview` creates zero commits. `--local-test` builds a disposable local
+repository, writes real commits, and verifies every date and identity.
+
+### Terminal preview
 
 ```
 ┌──────────────────────────┐
@@ -24,6 +56,26 @@ global Git config**.
 │ ██      ██  ██████       │
 └──────────────────────────┘
 ```
+
+## Choose Your Mode
+
+| Mode | Command | Commits | Network |
+| --- | --- | ---: | ---: |
+| ![green preview badge](https://img.shields.io/badge/SAFE-preview-2ea44f) **Preview** | `--preview` | No | No |
+| ![blue dry-run badge](https://img.shields.io/badge/SAFE-dry--run-2563EB) **Dry run** | `--dry-run` | No | No |
+| ![purple interactive badge](https://img.shields.io/badge/LIVE-interactive-7C3AED) **Interactive** | `--interactive` | Only after you choose Build | No |
+| ![purple TUI badge](https://img.shields.io/badge/LIVE-Textual%20TUI-7C3AED) **Full-screen TUI** | `--tui` | Only after you choose Build + Verify | No |
+| ![orange publish badge](https://img.shields.io/badge/EXPLICIT-publish-F97316) **Publish** | `--publish` | Yes | GitHub + push |
+
+<details>
+<summary><strong>See the recommended workflow</strong></summary>
+
+1. Preview the word with `--preview --view github`.
+2. Inspect all planned dates with `--dry-run`.
+3. Run `--local-test` to verify a disposable repository.
+4. Publish only when you have reviewed the output and explicitly confirm.
+
+</details>
 
 ## How contribution calendars work
 
@@ -40,6 +92,12 @@ verifies the history with `git log` itself.
 
 ## Publishing to GitHub (opt-in)
 
+> [!CAUTION]
+> This is the one mode that creates back-dated history on GitHub and pushes it. Preview and verify locally first.
+
+<details>
+<summary><strong>Show the publish steps</strong></summary>
+
 ```bash
 python commit_art.py "HELLO" --publish --repo my-art
 ```
@@ -47,19 +105,24 @@ python commit_art.py "HELLO" --publish --repo my-art
 1. Uses your existing `gh` login (`gh auth login` first) - no tokens
    handled here. Commits are authored as your account (name + primary
    or noreply email) so squares attribute to you.
-2. Creates a **private** repo by default (`--public` to change that),
-   builds the commits fresh, verifies them locally, then asks you to
-   **type the repo name to confirm** (`--yes` skips the prompt).
-3. Pushes once to `main` and prints the URL.
+2. Asks you to **type the repo name to confirm** (`--yes` skips the
+   prompt), then creates a **private** repo by default (`--public` to
+   change that).
+3. Builds the commits fresh and verifies them locally.
+4. Pushes once to `main` and prints the URL.
 
 Private repos only shade your graph if "Private contributions" is
 enabled in GitHub profile settings. Honesty note still applies:
 back-dated art shows *when commits claim to be*, not real work done -
 don't use it to misrepresent your history.
 
+</details>
+
 ## Installation
 
-Requires Python 3.10+ and `git`. No third-party runtime dependencies.
+Requires Python 3.10+ and `git`. The core CLI uses only the Python
+standard library. The test suite uses `pytest`; the optional full-screen
+TUI uses `textual`; publishing uses the GitHub CLI (`gh`).
 
 ```bash
 pip install -r requirements.txt   # pytest only, for the test suite
@@ -99,7 +162,45 @@ Colors, banner, and progress bar show in a real terminal (auto-disabled
 when piped or with `NO_COLOR=1` / `--no-color`). Key lines
 (`RESULT: PASS`, `DRY RUN COMPLETE`, …) stay plain-text greppable.
 
+## Interactive Controls
+
+<details open>
+<summary><strong>Legacy interactive menu</strong></summary>
+
+| Key | Action |
+| --- | --- |
+| <kbd>Up</kbd> / <kbd>Down</kbd> + <kbd>Enter</kbd> | Navigate and select |
+| <kbd>T</kbd> | Build and verify |
+| <kbd>D</kbd> | Show the dry-run plan |
+| <kbd>C</kbd> | Change brightness |
+| <kbd>W</kbd> | Toggle auto-wrap |
+| <kbd>S</kbd> | Change the start date |
+| <kbd>2</kbd> | Configure two-line mode |
+| <kbd>G</kbd> | Toggle blocks or GitHub view |
+| <kbd>B</kbd> | Export or restore backups |
+| <kbd>Q</kbd> | Quit |
+
+</details>
+
+<details>
+<summary><strong>Full-screen TUI shortcuts and buttons</strong></summary>
+
+| Input | Action |
+| --- | --- |
+| Text fields | Update the artwork live |
+| <kbd>Esc</kbd> | Leave the active field |
+| <kbd>T</kbd> | Build and verify |
+| <kbd>D</kbd> | Run a dry run |
+| <kbd>G</kbd> | Toggle the view |
+| <kbd>B</kbd> | Create a backup |
+| <kbd>Q</kbd> | Quit |
+
+</details>
+
 ## Usage
+
+<details open>
+<summary><strong>Common commands</strong></summary>
 
 ```bash
 python commit_art.py "HELLO" --preview        # boxed preview, zero commits
@@ -116,6 +217,8 @@ python commit_art.py "HELLO" --start 2026-01-04 --local-test   # must be a Sunda
 python commit_art.py "HELLO" --commits-per-pixel 5 --dry-run
 python commit_art.py --help
 ```
+
+</details>
 
 ## Examples (real output)
 
@@ -202,13 +305,15 @@ truly on top of each other.
 
 ## Brightness / intensity
 
-`--commits-per-pixel 1..10` (default 3). `renderer.INTENSITY_COMMITS`
-maps levels `{1:1, 2:3, 3:6, 4:10}` for multi-level art; binary mode is default.
+`--commits-per-pixel 1..10` (default 3) controls the number of commits
+written for every active pixel. Higher values make the contribution cells
+appear darker on GitHub.
 
-## Safety
+## Safety First
 
-- No `push`, no remotes, no GitHub API, no `--global` config - `run_git`
-  raises on any push attempt.
+- Local modes use no remotes, GitHub API, or `--global` config. The local
+  Git backend rejects push attempts; `--publish` is the sole explicit push
+  path.
 - Disposable repos under `./test-output/` use the fake identity
   `Contribution Art Test <contribution-art-test@example.invalid>`.
 - Every `--local-test` re-verifies count, dates, author/committer stamps,
