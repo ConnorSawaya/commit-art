@@ -10,6 +10,7 @@
   <p>
     <a href="#quick-start">Quick start</a> |
     <a href="#choose-your-mode">Choose a mode</a> |
+    <a href="#visual-workflow">Visual workflow</a> |
     <a href="#interactive-controls">Controls</a> |
     <a href="#safety-first">Safety</a>
   </p>
@@ -76,6 +77,30 @@ repository, writes real commits, and verifies every date and identity.
 4. Publish only when you have reviewed the output and explicitly confirm.
 
 </details>
+
+## Visual Workflow
+
+```mermaid
+flowchart LR
+    A[Your text] --> B[Pixel grid]
+    B --> C{Choose a mode}
+    C -->|Preview| D[Terminal preview]
+    C -->|Dry run| E[Dates and plan]
+    C -->|Local test| F[Disposable Git repo]
+    F --> G[PASS verification]
+    G --> H{Explicit publish?}
+    H -->|No| I[Stay local]
+    H -->|Yes| J[Create repo and push]
+
+    classDef safe fill:#dcfce7,stroke:#16a34a,color:#14532d
+    classDef inspect fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+    classDef live fill:#ede9fe,stroke:#7c3aed,color:#4c1d95
+    classDef caution fill:#ffedd5,stroke:#f97316,color:#7c2d12
+    class A,B,D,I safe
+    class E,F,G inspect
+    class C,H live
+    class J caution
+```
 
 ## How contribution calendars work
 
