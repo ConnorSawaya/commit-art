@@ -1,6 +1,6 @@
 """Backup backend: export plans (JSON) and zip/restore generated repos.
 
-Stdlib only (json, zipfile, datetime). All paths stay local — no network.
+Stdlib only (json, zipfile, datetime). All paths stay local - no network.
 Backups live in <project>/backups/ by default.
 """
 
@@ -62,7 +62,7 @@ def backup_repos(output_dir, backup_dir=None, stamp=None):
     with zipfile.ZipFile(dest, 'w', zipfile.ZIP_DEFLATED) as z:
         for repo in repos:
             for f in sorted(repo.rglob('*')):
-                # Skip .git internals? No — include them so restore keeps history.
+                # Skip .git internals? No - include them so restore keeps history.
                 # But skip nothing; zip everything (repos are small in tests).
                 if f.is_file():
                     z.write(f, f.relative_to(output_dir))

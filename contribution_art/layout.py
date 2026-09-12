@@ -93,7 +93,7 @@ def plan_layout(text='', max_weeks=52, spacing=1, commits_per_pixel=3,
     """Plan single-line (full font) or stacked two-line (mini font) layout.
 
     Stacked mode puts line 1 on rows 0-2 and line 2 on rows 4-6 of the
-    SAME week columns — letters truly on top of each other in one graph.
+    SAME week columns - letters truly on top of each other in one graph.
     Returns dict: mode ('single'|'stacked'), lines, widths,
     pixels_per_line, total_pixels, estimated_commits, fits,
     usage_percent, warnings.

@@ -103,7 +103,7 @@ def glyph_width(char):
 
 # --- Compact 3-row font for stacked two-line mode ------------------------
 # The graph is 7 rows tall: line 1 on rows 0-2, one gap row, line 2 on
-# rows 4-6 — every row used. Glyphs are best-effort blocky (3 rows can't
+# rows 4-6 - every row used. Glyphs are best-effort blocky (3 rows can't
 # match the 7-row font); same edit rules: exactly 3 rows each, '#'
 # filled, '.' empty, widths 1-5.
 

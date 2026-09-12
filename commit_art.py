@@ -137,7 +137,7 @@ def build_plan(args, today=None):
                            commits_per_pixel=args.commits_per_pixel,
                            auto_wrap_enabled=args.auto_wrap)
     start = parse_start(args.start)
-    # One grid, one date range — stacked lines share the same weeks.
+    # One grid, one date range - stacked lines share the same weeks.
     if plan['mode'] == 'stacked':
         grid = render_stacked(plan['lines'][0], plan['lines'][1],
                               spacing=args.spacing)

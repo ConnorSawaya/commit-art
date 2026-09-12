@@ -2,7 +2,7 @@
 
 Nothing here runs unless the user passes --publish AND confirms.
 Authentication is delegated entirely to the `gh` CLI (already logged in
-as the user) — this module never handles tokens or passwords.
+as the user) - this module never handles tokens or passwords.
 
 Usage from the CLI:
     python commit_art.py "HELLO" --publish --repo my-art --yes

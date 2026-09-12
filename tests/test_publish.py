@@ -1,4 +1,4 @@
-"""Publish tests. All GitHub interaction is mocked — these tests must
+"""Publish tests. All GitHub interaction is mocked - these tests must
 never touch the network or the real `gh` account."""
 
 import subprocess

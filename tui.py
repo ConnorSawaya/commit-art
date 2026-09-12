@@ -6,7 +6,7 @@ Requires `pip install textual`. Launched via:
     python commit_art.py --tui
 
 Layout: artwork panel (left) + stats/settings/actions (right) + scrolling
-log (bottom) — everything visible at once. All Git work stays local:
+log (bottom) - everything visible at once. All Git work stays local:
 Build creates a disposable repo under ./test-output/ and verifies it.
 Never pushes (the backend raises on any push attempt).
 """

@@ -41,7 +41,7 @@ def test_export_plan_json(tmp_path):
 def test_backup_and_restore_roundtrip(tmp_path, monkeypatch):
     import contribution_art.backup as bak
     monkeypatch.setattr(bak, 'default_backup_dir', lambda *a: tmp_path / 'backups')
-    # fake a generated repo (no .git needed? backup requires .git) — make one
+    # fake a generated repo (no .git needed? backup requires .git) - make one
     repo = tmp_path / 'out' / 'HI'
     (repo / '.git').mkdir(parents=True)
     (repo / 'contribution-art.log').write_text('x\n', encoding='utf-8')

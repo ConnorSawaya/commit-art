@@ -1,6 +1,6 @@
 """Pure text builders for the full-screen TUI panels.
 
-No Textual dependency here — this module is importable and testable with
+No Textual dependency here - this module is importable and testable with
 stdlib only. `tui.py` (the Textual app) renders these strings into panels.
 """
 
