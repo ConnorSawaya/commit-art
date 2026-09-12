@@ -115,7 +115,7 @@ python commit_art.py --help
 
 ![Contribution-graph art mockup](./docs/contribution-preview.png)
 
-[Open the image directly](./docs/contribution-preview.png)
+[Open `docs/contribution-preview.png` directly](https://github.com/ConnorSawaya/commit-art/blob/main/docs/contribution-preview.png?raw=1)
 
 Single line:
 
