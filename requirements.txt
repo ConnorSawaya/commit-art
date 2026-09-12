@@ -1,0 +1,5 @@
+# Runtime needs only the Python standard library.
+# Pinned for running the test suite:
+pytest>=7
+# Optional, only for the full-screen `python commit_art.py --tui` mode:
+# textual>=8
