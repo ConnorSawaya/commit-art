@@ -113,6 +113,9 @@ python commit_art.py --help
 
 ## Examples (real output)
 
+![Mockup of contribution-graph art: green squares spelling letters across
+the year, with month labels and a Less-to-More legend](docs/contribution-preview.png)
+
 Single line:
 
 ```text
